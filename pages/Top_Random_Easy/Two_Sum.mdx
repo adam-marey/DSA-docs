@@ -1,0 +1,57 @@
+# Two Sum 
+
+
+**Level:** `Easy`
+
+
+* [Leetcode](https://leetcode.com/problems/two-sum/description/)
+
+Given an array of integers `nums` and an integer `target`, `return indices` of the two numbers such that they add up to `target`.
+
+You may assume that each input would have **exactly one solution**, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+Input: `nums = [2,7,11,15], target = 9`
+
+Output: `[0,1]` 
+
+Explanation:  `Because nums[0] + nums[1] == 9, we return [0, 1].`
+
+<details>
+    <summary>Hint</summary>
+
+One way to approach this problem efficiently is by using a hash map (object in JavaScript). Iterate through the array, and for each element, calculate the difference between the target and the current element. Check if that difference exists in the hash map. If it does, you've found the two numbers that add up to the target. If not, store the current element in the hash map for future reference.
+
+</details>
+
+<details>
+    <summary>Solution</summary>
+
+
+
+```javascript
+function twoSum(nums, target) {
+  const numIndices = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    const currentNum = nums[i];
+    const complement = target - currentNum;
+
+    if (numIndices.hasOwnProperty(complement)) {
+      return [numIndices[complement], i];
+    }
+
+    numIndices[currentNum] = i;
+  }
+
+  return []; // No solution found
+}
+
+```
+
+`Space complexity: O(n)` - The function uses a JavaScript object called numIndices to store numbers and their corresponding indices. In the worst case, this object can contain 'n' entries, where 'n' is the number of elements in the nums array. Therefore, the space complexity is O(n).
+
+`Time complexity: O(n)` - The function uses a for loop that iterates through the nums array, and for each element, it performs constant-time operations (mostly dictionary lookups and arithmetic operations). Since the loop iterates 'n' times and each iteration takes constant time, the time complexity is O(n).
+
+</details>
